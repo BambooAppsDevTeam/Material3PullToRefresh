@@ -72,4 +72,7 @@ dependencies {
 
     debugImplementation(libs.compose.ui.test.manifest)
     debugImplementation(libs.compose.ui.tooling)
+
+    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.compose.rules)
 }

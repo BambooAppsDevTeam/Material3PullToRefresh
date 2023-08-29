@@ -46,4 +46,6 @@ dependencies {
     androidTestImplementation(libs.compose.ui.test)
     androidTestImplementation(libs.androidx.test)
     androidTestImplementation(libs.espresso)
+    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.compose.rules)
 }
