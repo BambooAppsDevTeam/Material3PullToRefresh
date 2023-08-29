@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.app)
+    kotlin("android")
+    alias(libs.plugins.detekt)
 }
 
 android {
