@@ -151,13 +151,17 @@ fun PullRefreshIndicator(
 private fun CircularArrowIndicator(
     state: PullRefreshState,
     color: Color,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     val path = remember { Path().apply { fillType = PathFillType.EvenOdd } }
 
     val targetAlpha by remember(state) {
         derivedStateOf {
-            if (state.progress >= 1f) MaxAlpha else MinAlpha
+            if (state.progress >= 1f) {
+                MaxAlpha
+            } else {
+                MinAlpha
+            }
         }
     }
 

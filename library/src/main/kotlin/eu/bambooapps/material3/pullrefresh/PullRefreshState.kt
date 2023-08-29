@@ -133,7 +133,9 @@ class PullRefreshState internal constructor(
     private var _refreshingOffset by mutableFloatStateOf(refreshingOffset)
 
     internal fun onPull(pullDelta: Float): Float {
-        if (_refreshing) return 0f // Already refreshing, do nothing.
+        if (_refreshing) {
+            return 0f // Already refreshing, do nothing.
+        }
 
         val newOffset = (distancePulled + pullDelta).coerceAtLeast(0f)
         val dragConsumed = newOffset - distancePulled
@@ -143,7 +145,9 @@ class PullRefreshState internal constructor(
     }
 
     internal fun onRelease(velocity: Float): Float {
-        if (refreshing) return 0f // Already refreshing, do nothing
+        if (refreshing) {
+            return 0f // Already refreshing, do nothing
+        }
 
         if (adjustedDistancePulled > threshold) {
             onRefreshState.value()
@@ -167,7 +171,13 @@ class PullRefreshState internal constructor(
         if (_refreshing != refreshing) {
             _refreshing = refreshing
             distancePulled = 0f
-            animateIndicatorTo(if (refreshing) _refreshingOffset else 0f)
+            animateIndicatorTo(
+                if (refreshing) {
+                    _refreshingOffset
+                } else {
+                    0f
+                }
+            )
         }
     }
 
@@ -178,7 +188,9 @@ class PullRefreshState internal constructor(
     internal fun setRefreshingOffset(refreshingOffset: Float) {
         if (_refreshingOffset != refreshingOffset) {
             _refreshingOffset = refreshingOffset
-            if (refreshing) animateIndicatorTo(refreshingOffset)
+            if (refreshing) {
+                animateIndicatorTo(refreshingOffset)
+            }
         }
     }
 
