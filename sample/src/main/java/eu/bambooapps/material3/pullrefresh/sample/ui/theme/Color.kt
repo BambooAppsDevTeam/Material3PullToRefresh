@@ -1,3 +1,4 @@
+@file:Suppress("MagicNumber") // colors are OK to be defined in hex
 package eu.bambooapps.material3.pullrefresh.sample.ui.theme
 
 import androidx.compose.ui.graphics.Color
