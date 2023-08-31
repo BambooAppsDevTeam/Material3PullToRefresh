@@ -4,7 +4,7 @@ This is a library for Jetpack Compose to add pull-to-refresh capability to the c
 
 The pull refresh indicator uses tonal elevation instead of shadow.
 
-![demo](files/demo.mp4)
+![demo](files/demo.gif)
 
 ## Usage
 
