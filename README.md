@@ -1,5 +1,7 @@
 # Material3PullToRefresh
 
+[![Lint](https://github.com/BambooAppsDevTeam/Material3PullToRefresh/actions/workflows/lint.yml/badge.svg)](https://github.com/BambooAppsDevTeam/Material3PullToRefresh/actions/workflows/lint.yml)
+
 This is a library for Jetpack Compose to add pull-to-refresh capability to the composables. Adapted from the `compose-material` library and adjusted for the Material 3. This way, you won't need to add `compose-material` dependency if you already use Material 3 only.
 
 The pull refresh indicator uses tonal elevation instead of shadow.
