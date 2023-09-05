@@ -86,6 +86,34 @@ publishing {
             afterEvaluate {
                 from(components["release"])
             }
+
+            pom {
+                name = "compose-material3-pullrefresh"
+                description = "Material 3 Pull Refresh for Jetpack Compose"
+                url = "https://github.com/BambooAppsDevTeam/Material3PullToRefresh"
+
+                licenses {
+                    license {
+                        name = "Apache-2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "amv"
+                        name = "Andrei Mukamolau"
+                        email = "amv@bam-boo.eu"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:github.com/BambooAppsDevTeam/Material3PullToRefresh.git"
+                    developerConnection = "scm:git:ssh://github.com:BambooAppsDevTeam/Material3PullToRefresh.git"
+                    url = "https://github.com/BambooAppsDevTeam/Material3PullToRefresh/tree/main"
+
+                }
+            }
         }
     }
 }
