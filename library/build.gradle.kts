@@ -1,3 +1,5 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
 plugins {
     alias(libs.plugins.android.library)
     kotlin("android")
@@ -58,12 +60,28 @@ android {
     }
 }
 
+val dokkaJavadoc by tasks.getting(DokkaTask::class)
+
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn(dokkaJavadoc)
+    archiveClassifier.set("javadoc")
+    from(dokkaJavadoc.outputDirectory)
+}
+
+
+artifacts {
+    archives(javadocJar)
+}
+
+
 publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "eu.bambooapps"
             artifactId = "compose-material3-pullrefresh"
             version = "1.0.0"
+
+            artifact(javadocJar)
 
             afterEvaluate {
                 from(components["release"])
@@ -88,4 +106,5 @@ dependencies {
     androidTestImplementation(libs.espresso)
     detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.compose.rules)
+    dokkaPlugin(libs.dokka.android)
 }

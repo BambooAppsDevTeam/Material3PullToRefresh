@@ -21,6 +21,7 @@ coroutines = "1.7.3"
 desugar = "2.0.3"
 # https://github.com/detekt/detekt/releases
 detekt = "1.23.1"
+# https://github.com/Kotlin/dokka/releases
 dokka = "1.9.0"
 # https://developer.android.com/jetpack/androidx/releases/test
 espresso = "3.5.1"
@@ -58,6 +59,7 @@ compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+dokka-android = { group = "org.jetbrains.dokka", name = "android-documentation-plugin", version.ref = "dokka" }
 espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 junit = { module = "junit:junit", version.ref = "junit" }
 
