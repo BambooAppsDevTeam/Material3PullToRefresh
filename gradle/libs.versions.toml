@@ -23,28 +23,12 @@ desugar = "2.0.3"
 detekt = "1.23.1"
 # https://developer.android.com/jetpack/androidx/releases/test
 espresso = "3.5.1"
-# https://firebase.google.com/support/release-notes/android?authuser=0&hl=en#latest_sdk_versions
-firebase = "32.2.3"
-# https://github.com/googlemaps/android-maps-ktx/releases
-googleMapsKtx = "3.4.0"
-# https://developers.google.com/android/guides/releases
-googlePlayServiceLocation = "21.0.1"
-# https://developers.google.com/android/guides/releases
-googlePlayServiceMaps = "18.1.0"
-# https://developers.google.com/android/guides/releases
-googleServices = "4.3.15"
-# https://github.com/google/dagger/releases
-hilt = "2.47"
-# https://developer.android.com/jetpack/androidx/releases/hilt
-hiltNavigation = "1.0.0"
-# https://github.com/Kotlin/kotlinx.collections.immutable/blob/master/CHANGELOG.md
-immutableCollections = "0.3.5"
 # https://github.com/junit-team/junit4/releases
 junit = "4.13.2"
 # https://github.com/KakaoCup/Compose/releases
 kakao = "0.2.3"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 # https://github.com/pinterest/ktlint/releases
 ktlint = "0.49.1"
 # https://github.com/JLLeitschuh/ktlint-gradle/releases
