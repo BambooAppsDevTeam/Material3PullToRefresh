@@ -118,6 +118,15 @@ publishing {
     }
 }
 
+signing {
+    useInMemoryPgpKeys(
+        loadSecret(rootProject, "SIGNING_KEY_ID"),
+        loadSecret(rootProject, "SIGNING_KEY"),
+        loadSecret(rootProject, "SIGNING_PASSWORD"),
+    )
+    sign(publishing.publications)
+}
+
 dependencies {
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
