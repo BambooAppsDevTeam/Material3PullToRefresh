@@ -11,6 +11,10 @@ android {
     defaultConfig {
         minSdk = 21
 
+        aarMetadata {
+            minCompileSdk = 29
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -36,6 +40,14 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    testFixtures {
+        enable = true
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
