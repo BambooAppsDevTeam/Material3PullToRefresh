@@ -21,6 +21,7 @@ coroutines = "1.7.3"
 desugar = "2.0.3"
 # https://github.com/detekt/detekt/releases
 detekt = "1.23.1"
+dokka = "1.9.0"
 # https://developer.android.com/jetpack/androidx/releases/test
 espresso = "3.5.1"
 # https://github.com/junit-team/junit4/releases
@@ -66,6 +67,7 @@ android-app = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

@@ -5,6 +5,7 @@ plugins {
     kotlin("android") version libs.versions.kotlin apply false
     alias(libs.plugins.detekt)
     alias(libs.plugins.publishing)
+    alias(libs.plugins.dokka)
 }
 
 nexusPublishing {

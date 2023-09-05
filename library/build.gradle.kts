@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     kotlin("android")
     alias(libs.plugins.detekt)
+    alias(libs.plugins.dokka)
     publishing
     `maven-publish`
     signing
