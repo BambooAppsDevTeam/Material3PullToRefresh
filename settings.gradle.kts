@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Material 3 Pull Refresh"
-include(":sample")
-include(":library")
+include(":sample", ":library")
+project(":library").name = "compose-material3-pullrefresh"

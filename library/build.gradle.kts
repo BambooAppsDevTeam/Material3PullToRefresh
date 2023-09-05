@@ -2,7 +2,13 @@ plugins {
     alias(libs.plugins.android.library)
     kotlin("android")
     alias(libs.plugins.detekt)
+    publishing
+    `maven-publish`
+    signing
 }
+
+group = "eu.bambooapps"
+version = "1.0.0"
 
 android {
     namespace = "eu.bambooapps.material3.pullrefresh"
@@ -47,6 +53,20 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+        }
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "eu.bambooapps"
+            artifactId = "compose-material3-pullrefresh"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
         }
     }
 }

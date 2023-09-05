@@ -56,7 +56,7 @@ dependencies {
     debugImplementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation(project(":library"))
+    implementation(project(":compose-material3-pullrefresh"))
 
     implementation(libs.activity)
     implementation(libs.androidx.appcompat)
