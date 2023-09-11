@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicator
 import eu.bambooapps.material3.pullrefresh.pullRefresh
 import eu.bambooapps.material3.pullrefresh.rememberPullRefreshState
@@ -29,24 +30,26 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             Material3PullRefreshTheme {
                 val isRefreshing by remember {
                     mutableStateOf(true)
                 }
                 val state = rememberPullRefreshState(refreshing = isRefreshing, onRefresh = {})
-                Box {
+                Box(modifier = Modifier.systemBarsPadding()) {
                     LazyColumn(
                         modifier = Modifier.pullRefresh(state),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        items(listOf("test 1", "test 2")) {
+                        items(count = 100) {
                             OutlinedCard(modifier = Modifier.fillMaxWidth()) {
                                 Text(text = "Item $it", modifier = Modifier.padding(16.dp))
                             }
                         }
                     }
-                    PullRefreshIndicator(refreshing = isRefreshing, state = state,
+                    PullRefreshIndicator(
+                        refreshing = isRefreshing, state = state,
                         modifier = Modifier
                             .align(Alignment.TopCenter)
                     )
