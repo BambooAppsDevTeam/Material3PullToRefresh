@@ -5,7 +5,7 @@
 
 This is a library for Jetpack Compose to add pull-to-refresh capability to the composables. Adapted from the `compose-material` library and adjusted for the Material 3. This way, you won't need to add `compose-material` dependency if you already use Material 3 only.
 
-The pull refresh indicator uses tonal elevation instead of shadow.
+The pull refresh indicator supports tonal elevation and shadow elevation, but shadow elevation is 0 dp by default.
 
 ![demo](files/demo.gif)
 
