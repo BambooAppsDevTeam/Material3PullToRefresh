@@ -10,11 +10,11 @@ annotations = "1.6.0"
 # https://developer.android.com/jetpack/androidx/releases/appcompat
 appCompat = "1.6.1"
 # https://developer.android.com/jetpack/androidx/releases/compose
-compose = "2023.08.00"
+compose = "2023.09.00"
 # https://github.com/mrmans0n/compose-rules/releases
-composeDetekt = "0.2.1"
+composeDetekt = "0.2.2"
 # https://developer.android.com/jetpack/androidx/releases/compose-compiler
-composeCompiler = "1.5.2"
+composeCompiler = "1.5.3"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 coroutines = "1.7.3"
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
