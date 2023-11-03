@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "eu.bambooapps"
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     namespace = "eu.bambooapps.material3.pullrefresh"
@@ -76,7 +76,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "eu.bambooapps"
             artifactId = "compose-material3-pullrefresh"
-            version = "1.0.0"
+            version = "1.0.1"
 
             artifact(javadocJar)
 
