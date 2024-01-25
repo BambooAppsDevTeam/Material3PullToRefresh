@@ -235,10 +235,10 @@ private fun ArrowValues(progress: Float): ArrowValues {
     // Calculations based on SwipeRefreshLayout specification.
     val endTrim = adjustedPercent * MaxProgressArc
     val rotation = (
-        ROTATION_REDUCER +
-            ADJUSTED_PERCENT_ROTATION_MULTIPLIER * adjustedPercent +
-            tensionPercent
-        ) * ROTATION_MULTIPLIER
+            ROTATION_REDUCER +
+                    ADJUSTED_PERCENT_ROTATION_MULTIPLIER * adjustedPercent +
+                    tensionPercent
+            ) * ROTATION_MULTIPLIER
     val startAngle = rotation * FULL_ROTATION_ANGLE
     val endAngle = (rotation + endTrim) * FULL_ROTATION_ANGLE
     val scale = min(1f, adjustedPercent)

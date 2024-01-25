@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "eu.bambooapps.material3.pullrefresh.sample"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

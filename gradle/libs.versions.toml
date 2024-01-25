@@ -1,26 +1,26 @@
 [versions]
 # https://developer.android.com/jetpack/androidx/releases/activity
-activity = "1.8.0"
+activity = "1.8.2"
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.1.2"
+agp = "8.2.2"
 # https://developer.android.com/jetpack/androidx/releases/test
 androidxTest = "1.1.5"
 # https://developer.android.com/jetpack/androidx/releases/annotation
-annotations = "1.7.0"
+annotations = "1.7.1"
 # https://developer.android.com/jetpack/androidx/releases/appcompat
 appCompat = "1.6.1"
 # https://developer.android.com/jetpack/androidx/releases/compose
-compose = "2023.10.01"
+compose = "2024.01.00"
 # https://github.com/mrmans0n/compose-rules/releases
 composeDetekt = "0.3.3"
 # https://developer.android.com/jetpack/androidx/releases/compose-compiler
-composeCompiler = "1.5.3"
+composeCompiler = "1.5.8"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 coroutines = "1.7.3"
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
-desugar = "2.0.3"
+desugar = "2.0.4"
 # https://github.com/detekt/detekt/releases
-detekt = "1.23.3"
+detekt = "1.23.4"
 # https://github.com/Kotlin/dokka/releases
 dokka = "1.9.10"
 # https://github.com/cdimascio/dotenv-kotlin/releases
@@ -32,7 +32,7 @@ junit = "4.13.2"
 # https://github.com/KakaoCup/Compose/releases
 kakao = "0.2.3"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "1.9.10"
+kotlin = "1.9.22"
 # https://github.com/pinterest/ktlint/releases
 ktlint = "0.49.1"
 # https://github.com/JLLeitschuh/ktlint-gradle/releases
@@ -50,8 +50,9 @@ annotations = { group = "androidx.annotation", name = "annotation", version.ref 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appCompat" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "ktxCore" }
 androidx-test = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTest" }
+compose-animations = { group = "androidx.compose.animation", name = "animation" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
-compose-material = { group = "androidx.compose.material3", name = "material3" }
+compose-material = { group = "androidx.compose.material3", name = "material3", version = "1.2.0-rc01" }
 compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-rules = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "composeDetekt" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }

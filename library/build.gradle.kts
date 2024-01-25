@@ -130,6 +130,7 @@ dependencies {
     debugImplementation(composeBom)
     androidTestImplementation(composeBom)
     implementation(libs.compose.ui)
+    implementation(libs.compose.animations)
     implementation(libs.compose.material)
     implementation(libs.compose.preview)
     testImplementation(libs.junit)
