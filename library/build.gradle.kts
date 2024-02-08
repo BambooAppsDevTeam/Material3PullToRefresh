@@ -76,7 +76,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "eu.bambooapps"
             artifactId = "compose-material3-pullrefresh"
-            version = "1.0.1"
+            version = "1.1.0"
 
             artifact(javadocJar)
 
@@ -106,7 +106,8 @@ publishing {
 
                 scm {
                     connection = "scm:git:github.com/BambooAppsDevTeam/Material3PullToRefresh.git"
-                    developerConnection = "scm:git:ssh://github.com:BambooAppsDevTeam/Material3PullToRefresh.git"
+                    developerConnection =
+                        "scm:git:ssh://github.com:BambooAppsDevTeam/Material3PullToRefresh.git"
                     url = "https://github.com/BambooAppsDevTeam/Material3PullToRefresh/tree/main"
 
                 }
