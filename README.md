@@ -16,7 +16,7 @@ We recommend using version catalog to define the dependency:
 ```toml
 [versions]
 # ...
-pullRefresh = "1.0.0"
+pullRefresh = "1.0.1"
 
 [libraries]
 pullrefresh = { module = "eu.bambooapps:compose-material3-pullrefresh", version.ref = "pullRefresh" }
@@ -36,7 +36,7 @@ Alternatively, you can define the dependency directly:
 ```kotlin
 dependencies {
     // ...
-    implementation("eu.bambooapps:compose-material3-pullrefresh:1.0.0")
+    implementation("eu.bambooapps:compose-material3-pullrefresh:1.0.1")
 }
 ```
 
