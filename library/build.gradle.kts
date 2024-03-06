@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     kotlin("android")
     alias(libs.plugins.detekt)
+    alias(libs.plugins.kotlinter)
     alias(libs.plugins.dokka)
     publishing
     `maven-publish`
@@ -65,11 +66,9 @@ val javadocJar by tasks.registering(Jar::class) {
     from(dokkaJavadoc.outputDirectory)
 }
 
-
 artifacts {
     archives(javadocJar)
 }
-
 
 publishing {
     publications {
@@ -109,7 +108,6 @@ publishing {
                     developerConnection =
                         "scm:git:ssh://github.com:BambooAppsDevTeam/Material3PullToRefresh.git"
                     url = "https://github.com/BambooAppsDevTeam/Material3PullToRefresh/tree/main"
-
                 }
             }
         }
@@ -120,7 +118,7 @@ signing {
     useInMemoryPgpKeys(
         loadSecret(rootProject, "SIGNING_KEY_ID"),
         loadSecret(rootProject, "SIGNING_KEY"),
-        loadSecret(rootProject, "SIGNING_PASSWORD"),
+        loadSecret(rootProject, "SIGNING_PASSWORD")
     )
     sign(publishing.publications)
 }

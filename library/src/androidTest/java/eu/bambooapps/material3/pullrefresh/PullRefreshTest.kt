@@ -41,7 +41,7 @@ class PullRefreshTest {
             Box {
                 val state = rememberPullRefreshState(
                     refreshing = true,
-                    onRefresh = {},
+                    onRefresh = {}
                 )
                 Column(
                     modifier = Modifier
@@ -51,7 +51,8 @@ class PullRefreshTest {
                     Text(text = "Test")
                 }
                 PullRefreshIndicator(
-                    refreshing = true, state = state,
+                    refreshing = true,
+                    state = state,
                     modifier = Modifier.semantics { testTag = INDICATOR_TAG }
                 )
             }
@@ -69,7 +70,7 @@ class PullRefreshTest {
                 }
                 val state = rememberPullRefreshState(
                     refreshing = isRefreshing,
-                    onRefresh = { isRefreshing = true },
+                    onRefresh = { isRefreshing = true }
                 )
                 Column(
                     modifier = Modifier
@@ -80,7 +81,8 @@ class PullRefreshTest {
                     Text(text = "Test")
                 }
                 PullRefreshIndicator(
-                    refreshing = isRefreshing, state = state,
+                    refreshing = isRefreshing,
+                    state = state,
                     modifier = Modifier.semantics { testTag = INDICATOR_TAG }
                 )
             }

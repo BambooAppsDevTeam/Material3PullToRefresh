@@ -44,14 +44,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun PullRefreshSample(
-    isRefreshing: Boolean,
-    modifier: Modifier = Modifier
-) {
+fun PullRefreshSample(isRefreshing: Boolean, modifier: Modifier = Modifier) {
     Box(modifier = modifier) {
         val state = rememberPullRefreshState(refreshing = isRefreshing, onRefresh = {})
         LazyColumn(
-            modifier = Modifier.pullRefresh(state),
+            modifier = Modifier.pullRefresh(state)
         ) {
             items(count = 100) {
                 ListItem(headlineContent = {
@@ -60,7 +57,8 @@ fun PullRefreshSample(
             }
         }
         PullRefreshIndicator(
-            refreshing = isRefreshing, state = state,
+            refreshing = isRefreshing,
+            state = state,
             modifier = Modifier
                 .align(Alignment.TopCenter)
         )

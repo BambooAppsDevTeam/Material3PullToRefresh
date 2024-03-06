@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.app)
     kotlin("android")
     alias(libs.plugins.detekt)
+    alias(libs.plugins.kotlinter)
 }
 
 android {

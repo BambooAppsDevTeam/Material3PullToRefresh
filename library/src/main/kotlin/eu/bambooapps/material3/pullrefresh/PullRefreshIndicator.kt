@@ -57,9 +57,9 @@ import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.ArcRadiu
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.ArrowHeight
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.ArrowWidth
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.IndicatorSize
-import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MaxAlpha
-import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MaxProgressArc
-import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MinAlpha
+import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MAX_ALPHA
+import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MAX_PROGRESS_ARC
+import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.MIN_ALPHA
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicatorDefaults.SpinnerShape
 import kotlin.math.abs
 import kotlin.math.max
@@ -87,10 +87,12 @@ fun PullRefreshIndicator(
     colors: PullRefreshIndicatorColors = PullRefreshIndicatorDefaults.colors(),
     tonalElevation: Dp = PullRefreshIndicatorDefaults.Elevation,
     shadowElevation: Dp = 0.dp,
-    scale: Boolean = false,
+    scale: Boolean = false
 ) {
     val showElevation by remember(refreshing, state) {
-        derivedStateOf { refreshing || state.position > PullRefreshIndicatorDefaults.POSITION_THRESHOLD }
+        derivedStateOf {
+            refreshing || state.position > PullRefreshIndicatorDefaults.POSITION_THRESHOLD
+        }
     }
 
     Surface(
@@ -109,33 +111,35 @@ fun PullRefreshIndicator(
         shape = SpinnerShape,
         modifier = modifier
             .size(IndicatorSize)
-            .pullRefreshIndicatorTransform(state, scale),
+            .pullRefreshIndicatorTransform(state, scale)
     ) {
         Crossfade(
             targetState = refreshing,
-            animationSpec = tween(durationMillis = PullRefreshIndicatorDefaults.CrossfadeDurationMs),
-            label = "PullRefreshIndicator",
+            animationSpec = tween(
+                durationMillis = PullRefreshIndicatorDefaults.CROSSFADE_DURATION_MS
+            ),
+            label = "PullRefreshIndicator"
         ) { refreshing ->
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center,
+                contentAlignment = Alignment.Center
             ) {
                 val spinnerSize =
                     (ArcRadius + PullRefreshIndicatorDefaults.StrokeWidth).times(
-                        2,
+                        2
                     )
 
                 if (refreshing) {
                     CircularProgressIndicator(
                         color = colors.contentColor().value,
                         strokeWidth = PullRefreshIndicatorDefaults.StrokeWidth,
-                        modifier = Modifier.size(spinnerSize),
+                        modifier = Modifier.size(spinnerSize)
                     )
                 } else {
                     CircularArrowIndicator(
                         state,
                         colors.contentColor().value,
-                        Modifier.size(spinnerSize),
+                        Modifier.size(spinnerSize)
                     )
                 }
             }
@@ -151,16 +155,16 @@ fun PullRefreshIndicator(
 private fun CircularArrowIndicator(
     state: PullRefreshState,
     color: Color,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val path = remember { Path().apply { fillType = PathFillType.EvenOdd } }
 
     val targetAlpha by remember(state) {
         derivedStateOf {
             if (state.progress >= 1f) {
-                MaxAlpha
+                MAX_ALPHA
             } else {
-                MinAlpha
+                MIN_ALPHA
             }
         }
     }
@@ -168,7 +172,7 @@ private fun CircularArrowIndicator(
     val alphaState = animateFloatAsState(
         targetValue = targetAlpha,
         animationSpec = AlphaTween,
-        label = "alphaState",
+        label = "alphaState"
     )
 
     // Empty semantics for tests
@@ -182,7 +186,7 @@ private fun CircularArrowIndicator(
                 size.center.x - arcRadius,
                 size.center.y - arcRadius,
                 size.center.x + arcRadius,
-                size.center.y + arcRadius,
+                size.center.y + arcRadius
             )
             drawArc(
                 color = color,
@@ -194,8 +198,8 @@ private fun CircularArrowIndicator(
                 size = arcBounds.size,
                 style = Stroke(
                     width = PullRefreshIndicatorDefaults.StrokeWidth.toPx(),
-                    cap = StrokeCap.Square,
-                ),
+                    cap = StrokeCap.Square
+                )
             )
             drawArrow(path, arcBounds, color, alpha, values)
         }
@@ -207,7 +211,7 @@ private class ArrowValues(
     val rotation: Float,
     val startAngle: Float,
     val endAngle: Float,
-    val scale: Float,
+    val scale: Float
 )
 
 private const val DISCARD_PROGRESS_PERCENTAGE = 0.4f
@@ -223,7 +227,7 @@ private fun ArrowValues(progress: Float): ArrowValues {
     // Discard first 40% of progress. Scale remaining progress to full range between 0 and 100%.
     val adjustedPercent = max(
         min(1f, progress) - DISCARD_PROGRESS_PERCENTAGE,
-        0f,
+        0f
     ) * ADJUSTED_PERCENT_MULTIPLIER / ADJUSTED_PERCENT_REDUCER
     // How far beyond the threshold pull has gone, as a percentage of the threshold.
     val overshootPercent = abs(progress) - 1.0f
@@ -233,12 +237,12 @@ private fun ArrowValues(progress: Float): ArrowValues {
     val tensionPercent = linearTension - linearTension.pow(2) / TENSION_PERCENT_REDUCER
 
     // Calculations based on SwipeRefreshLayout specification.
-    val endTrim = adjustedPercent * MaxProgressArc
+    val endTrim = adjustedPercent * MAX_PROGRESS_ARC
     val rotation = (
-            ROTATION_REDUCER +
-                    ADJUSTED_PERCENT_ROTATION_MULTIPLIER * adjustedPercent +
-                    tensionPercent
-            ) * ROTATION_MULTIPLIER
+        ROTATION_REDUCER +
+            ADJUSTED_PERCENT_ROTATION_MULTIPLIER * adjustedPercent +
+            tensionPercent
+        ) * ROTATION_MULTIPLIER
     val startAngle = rotation * FULL_ROTATION_ANGLE
     val endAngle = (rotation + endTrim) * FULL_ROTATION_ANGLE
     val scale = min(1f, adjustedPercent)
@@ -251,7 +255,7 @@ private fun DrawScope.drawArrow(
     bounds: Rect,
     color: Color,
     alpha: Float,
-    values: ArrowValues,
+    values: ArrowValues
 ) {
     arrow.reset()
     arrow.moveTo(0f, 0f) // Move to left corner
@@ -260,7 +264,7 @@ private fun DrawScope.drawArrow(
     // Line to tip of arrow
     arrow.lineTo(
         x = ArrowWidth.toPx() * values.scale / 2,
-        y = ArrowHeight.toPx() * values.scale,
+        y = ArrowHeight.toPx() * values.scale
     )
 
     val radius = min(bounds.width, bounds.height) / 2f
@@ -268,8 +272,8 @@ private fun DrawScope.drawArrow(
     arrow.translate(
         Offset(
             x = radius + bounds.center.x - inset,
-            y = bounds.center.y + PullRefreshIndicatorDefaults.StrokeWidth.toPx() / 2f,
-        ),
+            y = bounds.center.y + PullRefreshIndicatorDefaults.StrokeWidth.toPx() / 2f
+        )
     )
     arrow.close()
     rotate(degrees = values.endAngle) {
@@ -278,8 +282,8 @@ private fun DrawScope.drawArrow(
 }
 
 object PullRefreshIndicatorDefaults {
-    const val CrossfadeDurationMs = 100
-    const val MaxProgressArc = 0.8f
+    const val CROSSFADE_DURATION_MS = 100
+    const val MAX_PROGRESS_ARC = 0.8f
     private const val ALPHA_TWEEN_DURATION_MILLIS = 300
     const val POSITION_THRESHOLD = 0.5f
 
@@ -292,25 +296,24 @@ object PullRefreshIndicatorDefaults {
     val Elevation = 6.dp
 
     // Values taken from SwipeRefreshLayout
-    const val MinAlpha = 0.3f
-    const val MaxAlpha = 1f
+    const val MIN_ALPHA = 0.3f
+    const val MAX_ALPHA = 1f
     val AlphaTween = tween<Float>(ALPHA_TWEEN_DURATION_MILLIS, easing = LinearEasing)
 
     @Composable
     fun colors(
         containerColor: Color = MaterialTheme.colorScheme.surface,
-        contentColor: Color = MaterialTheme.colorScheme.onSurface,
-    ): PullRefreshIndicatorColors =
-        PullRefreshIndicatorColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-        )
+        contentColor: Color = MaterialTheme.colorScheme.onSurface
+    ): PullRefreshIndicatorColors = PullRefreshIndicatorColors(
+        containerColor = containerColor,
+        contentColor = contentColor
+    )
 }
 
 @Immutable
 class PullRefreshIndicatorColors internal constructor(
     private val containerColor: Color,
-    private val contentColor: Color,
+    private val contentColor: Color
 ) {
     @Composable
     internal fun containerColor(): State<Color> {

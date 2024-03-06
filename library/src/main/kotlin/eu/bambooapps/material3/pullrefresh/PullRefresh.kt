@@ -40,15 +40,12 @@ import androidx.compose.ui.unit.Velocity
  * @param enabled If not enabled, all scroll delta and fling velocity will be ignored.
  */
 @ExperimentalMaterial3Api
-fun Modifier.pullRefresh(
-    state: PullRefreshState,
-    enabled: Boolean = true,
-) = inspectable(
+fun Modifier.pullRefresh(state: PullRefreshState, enabled: Boolean = true) = inspectable(
     inspectorInfo = debugInspectorInfo {
         name = "pullRefresh"
         properties["state"] = state
         properties["enabled"] = enabled
-    },
+    }
 ) {
     Modifier.pullRefresh(state::onPull, state::onRelease, enabled)
 }
@@ -79,14 +76,14 @@ fun Modifier.pullRefresh(
 fun Modifier.pullRefresh(
     onPull: (pullDelta: Float) -> Float,
     onRelease: suspend (flingVelocity: Float) -> Float,
-    enabled: Boolean = true,
+    enabled: Boolean = true
 ) = inspectable(
     inspectorInfo = debugInspectorInfo {
         name = "pullRefresh"
         properties["onPull"] = onPull
         properties["onRelease"] = onRelease
         properties["enabled"] = enabled
-    },
+    }
 ) {
     Modifier.nestedScroll(PullRefreshNestedScrollConnection(onPull, onRelease, enabled))
 }
@@ -94,13 +91,10 @@ fun Modifier.pullRefresh(
 private class PullRefreshNestedScrollConnection(
     private val onPull: (pullDelta: Float) -> Float,
     private val onRelease: suspend (flingVelocity: Float) -> Float,
-    private val enabled: Boolean,
+    private val enabled: Boolean
 ) : NestedScrollConnection {
 
-    override fun onPreScroll(
-        available: Offset,
-        source: NestedScrollSource,
-    ): Offset = when {
+    override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset = when {
         !enabled -> Offset.Zero
         source == Drag && available.y < 0 -> Offset(0f, onPull(available.y)) // Swiping up
         else -> Offset.Zero
@@ -109,7 +103,7 @@ private class PullRefreshNestedScrollConnection(
     override fun onPostScroll(
         consumed: Offset,
         available: Offset,
-        source: NestedScrollSource,
+        source: NestedScrollSource
     ): Offset = when {
         !enabled -> Offset.Zero
         source == Drag && available.y > 0 -> Offset(0f, onPull(available.y)) // Pulling down
