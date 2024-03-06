@@ -76,7 +76,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "eu.bambooapps"
             artifactId = "compose-material3-pullrefresh"
-            version = "1.1.0"
+            version = "1.1.1"
 
             artifact(javadocJar)
 
