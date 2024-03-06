@@ -5,8 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
@@ -18,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import eu.bambooapps.material3.pullrefresh.PullRefreshIndicator
 import eu.bambooapps.material3.pullrefresh.pullRefresh
 import eu.bambooapps.material3.pullrefresh.rememberPullRefreshState
@@ -33,10 +30,7 @@ class MainActivity : ComponentActivity() {
                 val isRefreshing by remember {
                     mutableStateOf(true)
                 }
-                PullRefreshSample(
-                    isRefreshing = isRefreshing,
-                    modifier = Modifier.systemBarsPadding()
-                )
+                PullRefreshSample(isRefreshing = isRefreshing)
             }
         }
     }
@@ -52,7 +46,7 @@ fun PullRefreshSample(isRefreshing: Boolean, modifier: Modifier = Modifier) {
         ) {
             items(count = 100) {
                 ListItem(headlineContent = {
-                    Text(text = "Item $it", modifier = Modifier.padding(16.dp))
+                    Text(text = "Item $it")
                 })
             }
         }
