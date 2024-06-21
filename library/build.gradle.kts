@@ -3,6 +3,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 plugins {
     alias(libs.plugins.android.library)
     kotlin("android")
+    kotlin("plugin.compose")
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.dokka)
@@ -44,9 +45,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     kotlinOptions {
         jvmTarget = "1.8"
